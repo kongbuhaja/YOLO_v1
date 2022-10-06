@@ -1,6 +1,6 @@
 # YOLO_v1
 Python
-tensorflow 2
+Tensorflow 2
 # Prediction from test images
 ![img1 daumcdn](https://user-images.githubusercontent.com/42567320/194291033-3220e2a9-39d3-40b0-ab0d-bd2355a75191.png)
 
