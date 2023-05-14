@@ -1,4 +1,4 @@
-# sudo docker build --force-rm -f yolov1.dockerfile -t yolov1:1.0 .
+# sudo docker build --force-rm -f dockerfiles/yolov1.dockerfile -t yolov1:1.0 .
 # sudo apt-get install x11-xserver-utils
 # xhost +
 # sudo docker run --gpus all -it -v /tmp/.x11-unix:/tmp/.x11-unix -e DISPLAY=unix$DISPLAY --name yolov1 yolov1:1.0
@@ -14,7 +14,7 @@ RUN apt update
 RUN echo "== Install Basic Tools ==" && \
     apt install -y --allow-unauthenticated \
     openssh-server vim nano htop tmux sudo git unzip build-essential\
-    python3.8.13 python3-pip curl dpkg libgtk2.0-dev \
+    python3 python3-pip curl dpkg libgtk2.0-dev \
     cmake libwebp-dev ca-certificates gnupg git \
     libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev \
     libatlas-base-dev gfortran \
@@ -26,12 +26,14 @@ RUN ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/lib
     ldconfig
 
 RUN pip3 install tensorflow==2.8 &&\
+    pip3 install protobuf==3.20.* &&\
     pip3 install opencv-python &&\
     pip3 install xmltodict &&\
     pip3 install glob2 &&\
     pip3 install matplotlib &&\
     pip3 install tqdm &&\
-    pip3 install gdown
+    pip3 install gdown &&\
+    pip3 install ipython
 
 RUN cd /home/ &&\
     git clone https://github.com/kongbuhaja/YOLO_v1.git
